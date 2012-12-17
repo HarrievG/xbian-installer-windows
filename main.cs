@@ -14,6 +14,10 @@ using System.Threading;
 
 namespace installer
 {
+    public enum restoreType {
+        CUSTOM, XBIAN
+    }
+
     public partial class main : Form
     {
         // Location of the XML file which holds the mirrors
@@ -32,6 +36,7 @@ namespace installer
         private version selectedVersion;
         private uint selectedUSBDevice;
         private bool operationInProgress;
+        private restoreType restoreType;
 
         public main()
         {
@@ -200,6 +205,7 @@ namespace installer
             if (!operationInProgress)
             {
                 if (dialog == DialogResult.Yes)
+                    this.restoreType = installer.restoreType.XBIAN;
                     // Checking if the file is already downloaded
                     if (System.IO.File.Exists(this.selectedVersion.getArchiveName()))
                     {
@@ -210,7 +216,7 @@ namespace installer
                     }
                     else
                     {
-                        DialogResult dialogResult = MessageBox.Show("The selected XBian version has NOT been downloaded yet, want to download it now?", "XBian installer", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = MessageBox.Show("XBian " + this.selectedVersion.getVersionName() + " has not been downloaded yet. Do you want to download it now?", "XBian installer", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.webClient.DownloadFileAsync(new Uri(this.selectedVersion.getRandomMirror()), "temp");
@@ -262,7 +268,10 @@ namespace installer
             }
             else
             {
-                MessageBox.Show("Operation succesfully completed, plug your SD card into your Raspberry pi now");
+                if (this.restoreType == restoreType.XBIAN)
+                    MessageBox.Show("Installation of XBian succesfully completed. You may now unplug your SD card and plug it into your Raspberri Pi");
+                else
+                    MessageBox.Show("Image succesfully restored. You may now unplug your SD card and plug it into your Raspberri Pi");
             }
 
             this.operationInProgress = false;
@@ -285,7 +294,7 @@ namespace installer
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "img files (*.img)|*.img";
-            dialog.Title = "Select a img file";
+            dialog.Title = "Select an img file";
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
                 this.tbRestoreImageLocation.Text = dialog.FileName;
@@ -303,6 +312,7 @@ namespace installer
                     this.operationInProgress = true;
                     this.showProgressMeter("Restoring the selected image to your SD card");
                     this.initRestore(this.tbRestoreImageLocation.Text, this.USBDevices[this.cbAdvancedSDCards.SelectedIndex]);
+                    this.restoreType = restoreType.CUSTOM;
                 }
             }
             else
@@ -328,7 +338,7 @@ namespace installer
                 this.selectedUSBDevice = this.USBDevices[this.cbAdvancedSDCards.SelectedIndex];
 
                 this.restoreTimer.Start();
-                this.showProgressMeter("Makeing a backup of your SD card");
+                this.showProgressMeter("Making a backup of your SD card");
 
                 if (dialog.FileName != "")
                 {

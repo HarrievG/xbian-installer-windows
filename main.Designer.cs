@@ -229,7 +229,7 @@
             this.btBackup.Name = "btBackup";
             this.btBackup.Size = new System.Drawing.Size(277, 23);
             this.btBackup.TabIndex = 5;
-            this.btBackup.Text = "Backup";
+            this.btBackup.Text = "One click backup";
             this.btBackup.UseVisualStyleBackColor = true;
             this.btBackup.Click += new System.EventHandler(this.btBackup_Click);
             // 
