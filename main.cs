@@ -24,7 +24,7 @@ namespace installer
         private List<version> versions;
 
         // Window for showing the progress
-        private ProgressMeter windowProgressMeter;
+        private string progressStatus;
 
         // WebClient for downloading files
         private WebClient webClient;
@@ -46,7 +46,9 @@ namespace installer
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(downloadProgressChanged);
             webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
             this.updateUI();
-            this.operationInProgress = false; 
+            this.operationInProgress = false;
+
+            this.closeProgressMeter();
         }
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -54,7 +56,7 @@ namespace installer
             // Until the the download is finished the name of the file is "temp", rename it to selected XBian version
             version ver = this.versions[comboBoxVersions.SelectedIndex];
             File.Move(@"temp", ver.getArchiveName());
-            this.windowProgressMeter.changeText( "(2/2) Installing XBian " + this.selectedVersion.getVersionName() + "on your SD card");
+            this.showProgressMeter("(2/2) Installing XBian " + this.selectedVersion.getVersionName() + "on your SD card");
             this.initRestore(this.selectedVersion.getArchiveName(), this.USBDevices[this.comboBoxSDcard.SelectedIndex]);
         }
 
@@ -189,7 +191,7 @@ namespace installer
 
         private void downloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            this.windowProgressMeter.setProgress(e.ProgressPercentage);
+            this.setProgress(e.ProgressPercentage);
         }
 
         private void InstallBtn_Click(object sender, System.EventArgs e)
@@ -203,8 +205,7 @@ namespace installer
                     {
                         // Version has already been downloaded
                         this.initRestore(this.selectedVersion.getArchiveName(), this.USBDevices[this.comboBoxSDcard.SelectedIndex]);
-                        this.windowProgressMeter = new ProgressMeter("Installing XBian " + this.selectedVersion.getVersionName() + " on your SD card");
-                        this.windowProgressMeter.Show();
+                        this.showProgressMeter("Installing XBian " + this.selectedVersion.getVersionName() + " on your SD card");
                         this.operationInProgress = true;
                     }
                     else
@@ -213,8 +214,7 @@ namespace installer
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.webClient.DownloadFileAsync(new Uri(this.selectedVersion.getRandomMirror()), "temp");
-                            this.windowProgressMeter = new ProgressMeter("(1/2) Downloading XBian " + this.selectedVersion.getVersionName());
-                            this.windowProgressMeter.Show();
+                            this.showProgressMeter("(1/2) Downloading XBian " + this.selectedVersion.getVersionName());
                             this.operationInProgress = true;
                         }
                     }
@@ -253,7 +253,7 @@ namespace installer
             this.Invoke((MethodInvoker)delegate
             {
                 this.progressTimer.Stop();
-                this.windowProgressMeter.Close();
+                this.closeProgressMeter();
             });
 
             if (stopwatch.ElapsedMilliseconds < 1000)
@@ -270,7 +270,7 @@ namespace installer
 
         private void installTimer_Tick(object sender, System.EventArgs e)
         {
-            this.windowProgressMeter.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * 12);
+            this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * 12);
         }
 
         private void comboBoxSDcard_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -301,8 +301,7 @@ namespace installer
                 if (dialogResult == DialogResult.Yes)
                 {
                     this.operationInProgress = true;
-                    this.windowProgressMeter = new ProgressMeter("Restoring the selected image to your SD card");
-                    this.windowProgressMeter.Show();
+                    this.showProgressMeter("Restoring the selected image to your SD card");
                     this.initRestore(this.tbRestoreImageLocation.Text, this.USBDevices[this.cbAdvancedSDCards.SelectedIndex]);
                 }
             }
@@ -328,9 +327,8 @@ namespace installer
                 dialog.ShowDialog();
                 this.selectedUSBDevice = this.USBDevices[this.cbAdvancedSDCards.SelectedIndex];
 
-                this.windowProgressMeter = new ProgressMeter("Makeing a backup of your SD card");
                 this.restoreTimer.Start();
-                this.windowProgressMeter.Show();
+                this.showProgressMeter("Makeing a backup of your SD card");
 
                 if (dialog.FileName != "")
                 {
@@ -354,8 +352,7 @@ namespace installer
 
         private void restoreTimer_Tick(object sender, EventArgs e)
         {
-            this.windowProgressMeter.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)));
-
+            this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)));
         }
 
         private void btRefreshAdvanced_Click(object sender, EventArgs e)
@@ -366,6 +363,30 @@ namespace installer
         private void button1_Click(object sender, EventArgs e)
         {
             this.listDevices();
+        }
+
+        private void closeProgressMeter()
+        {
+            this.Size = new Size(this.Width, 350);
+        }
+
+        private void showProgressMeter(string text)
+        {
+            this.Size = new Size(this.Width, 420);
+            this.progressStatus = text;
+        }
+
+        private void setProgress(int percentage)
+        {
+            this.labelDownloadStatus.Text = this.progressStatus + "  -  " + percentage + "%";
+            if (percentage <= 100)
+            {
+                this.progressBar.Value = percentage;
+            }
+            else
+            {
+                this.progressBar.Value = 100;
+            }
         }
     }
 }

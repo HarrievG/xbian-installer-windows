@@ -81,12 +81,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProgressMeter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProgressMeter.Designer.cs">
-      <DependentUpon>ProgressMeter.cs</DependentUpon>
-    </Compile>
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,9 +91,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="usbit32.cs" />
     <Compile Include="version.cs" />
-    <EmbeddedResource Include="ProgressMeter.resx">
-      <DependentUpon>ProgressMeter.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
