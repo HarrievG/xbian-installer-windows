@@ -120,9 +120,13 @@ namespace installer
             while ((usbdevice != 0))
             {
                 usbit32.GetFriendlyName(usbdevice, deviceName, 100);
-                this.comboBoxSDcard.Items.Add(deviceName.ToString());
-                this.cbAdvancedSDCards.Items.Add(deviceName.ToString());
-                this.USBDevices.Add(usbdevice);
+                Console.WriteLine(usbit32.GetDeviceSize(usbdevice));
+                if (usbit32.GetDeviceSize(usbdevice) > 900000000)
+                {
+                    this.comboBoxSDcard.Items.Add(deviceName.ToString());
+                    this.cbAdvancedSDCards.Items.Add(deviceName.ToString());
+                    this.USBDevices.Add(usbdevice);
+                }
                 usbdevice = usbit32.GetNextDevice(true);        
             }
         }
@@ -397,12 +401,6 @@ namespace installer
             {
                 this.progressBar.Value = 100;
             }
-        }
-
-        private void labelInfo_Click(object sender, EventArgs e)
-        {
-            Info i = new Info();
-            i.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
