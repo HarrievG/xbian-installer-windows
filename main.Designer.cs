@@ -50,10 +50,11 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.labelDownloadStatus = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.buttonInfo = new System.Windows.Forms.Button();
+            this.buttonCancelOperation = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btRefreshAdvanced = new System.Windows.Forms.Button();
-            this.buttonInfo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -256,7 +257,7 @@
             // 
             this.progressBar.Location = new System.Drawing.Point(17, 36);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(277, 21);
+            this.progressBar.Size = new System.Drawing.Size(261, 21);
             this.progressBar.TabIndex = 20;
             // 
             // labelDownloadStatus
@@ -270,6 +271,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.buttonCancelOperation);
             this.groupBox4.Controls.Add(this.labelDownloadStatus);
             this.groupBox4.Controls.Add(this.progressBar);
             this.groupBox4.Location = new System.Drawing.Point(4, 317);
@@ -277,6 +279,33 @@
             this.groupBox4.Size = new System.Drawing.Size(307, 66);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
+            // 
+            // buttonInfo
+            // 
+            this.buttonInfo.FlatAppearance.BorderSize = 0;
+            this.buttonInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.buttonInfo.Location = new System.Drawing.Point(287, 1);
+            this.buttonInfo.Name = "buttonInfo";
+            this.buttonInfo.Size = new System.Drawing.Size(29, 27);
+            this.buttonInfo.TabIndex = 24;
+            this.buttonInfo.Text = "?";
+            this.buttonInfo.UseVisualStyleBackColor = false;
+            this.buttonInfo.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // buttonCancelOperation
+            // 
+            this.buttonCancelOperation.BackgroundImage = global::installer.Properties.Resources.cross;
+            this.buttonCancelOperation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonCancelOperation.FlatAppearance.BorderSize = 0;
+            this.buttonCancelOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancelOperation.Location = new System.Drawing.Point(284, 37);
+            this.buttonCancelOperation.Name = "buttonCancelOperation";
+            this.buttonCancelOperation.Size = new System.Drawing.Size(18, 18);
+            this.buttonCancelOperation.TabIndex = 22;
+            this.buttonCancelOperation.UseVisualStyleBackColor = true;
+            this.buttonCancelOperation.Click += new System.EventHandler(this.buttonCancelOperation_Click);
             // 
             // pictureBox1
             // 
@@ -315,20 +344,6 @@
             this.btRefreshAdvanced.TabIndex = 20;
             this.btRefreshAdvanced.UseVisualStyleBackColor = true;
             this.btRefreshAdvanced.Click += new System.EventHandler(this.btRefreshAdvanced_Click);
-            // 
-            // buttonInfo
-            // 
-            this.buttonInfo.FlatAppearance.BorderSize = 0;
-            this.buttonInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.buttonInfo.Location = new System.Drawing.Point(287, 1);
-            this.buttonInfo.Name = "buttonInfo";
-            this.buttonInfo.Size = new System.Drawing.Size(29, 27);
-            this.buttonInfo.TabIndex = 24;
-            this.buttonInfo.Text = "?";
-            this.buttonInfo.UseVisualStyleBackColor = false;
-            this.buttonInfo.Click += new System.EventHandler(this.button2_Click);
             // 
             // main
             // 
@@ -390,6 +405,7 @@
         private System.Windows.Forms.Label labelDownloadStatus;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button buttonInfo;
+        private System.Windows.Forms.Button buttonCancelOperation;
 
     }
 }

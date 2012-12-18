@@ -37,6 +37,7 @@ namespace installer
         private uint selectedUSBDevice;
         private bool operationInProgress;
         private restoreType restoreType;
+        private bool operationCancelled;
 
         public main()
         {
@@ -58,11 +59,14 @@ namespace installer
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            // Until the the download is finished the name of the file is "temp", rename it to selected XBian version
-            version ver = this.versions[comboBoxVersions.SelectedIndex];
-            File.Move(@"temp", ver.getArchiveName());
-            this.showProgressMeter("(2/2) Installing XBian " + this.selectedVersion.getVersionName() + "on your SD card");
-            this.initRestore(this.selectedVersion.getArchiveName(), this.USBDevices[this.comboBoxSDcard.SelectedIndex]);
+            if (!operationCancelled)
+            {
+                // Until the the download is finished the name of the file is "temp", rename it to selected XBian version
+                version ver = this.versions[comboBoxVersions.SelectedIndex];
+                File.Move(@"temp", ver.getArchiveName());
+                this.showProgressMeter("(2/2) Installing XBian " + this.selectedVersion.getVersionName() + "on your SD card");
+                this.initRestore(this.selectedVersion.getArchiveName(), this.USBDevices[this.comboBoxSDcard.SelectedIndex]);
+            }
         }
 
         public void loadVersions()
@@ -205,10 +209,12 @@ namespace installer
 
         private void InstallBtn_Click(object sender, System.EventArgs e)
         {
+            this.operationCancelled = false;
             DialogResult dialog = MessageBox.Show("Are you sure you want to continue? This will remove all data on the selected SD card", "Warning!", MessageBoxButtons.YesNo);
             if (!operationInProgress)
             {
                 if (dialog == DialogResult.Yes)
+                {
                     this.restoreType = installer.restoreType.XBIAN;
                     // Checking if the file is already downloaded
                     if (System.IO.File.Exists(this.selectedVersion.getArchiveName()))
@@ -228,6 +234,7 @@ namespace installer
                             this.operationInProgress = true;
                         }
                     }
+                }
             }
             else
             {
@@ -272,10 +279,13 @@ namespace installer
             }
             else
             {
-                if (this.restoreType == restoreType.XBIAN)
-                    MessageBox.Show("Installation of XBian succesfully completed. You may now unplug your SD card and plug it into your Raspberri Pi");
-                else
-                    MessageBox.Show("Image succesfully restored. You may now unplug your SD card and plug it into your Raspberri Pi");
+                if (!operationCancelled)
+                {
+                    if (this.restoreType == restoreType.XBIAN)
+                        MessageBox.Show("Installation of XBian succesfully completed. You may now unplug your SD card and plug it into your Raspberri Pi");
+                    else
+                        MessageBox.Show("Image succesfully restored. You may now unplug your SD card and plug it into your Raspberri Pi");
+                }
             }
 
             this.operationInProgress = false;
@@ -308,6 +318,7 @@ namespace installer
 
         private void btRestore_Click(object sender, EventArgs e)
         {
+            this.operationCancelled = false;
             if (!operationInProgress)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to restore the selected image? This will delete ALL data on your SD card.", "Continue?", MessageBoxButtons.YesNo);
@@ -334,7 +345,7 @@ namespace installer
         {
             if (!operationInProgress)
             {
-                this.operationInProgress = true;
+        
                 SaveFileDialog dialog = new SaveFileDialog();
                 dialog.Filter = "Image file|*.img";
                 dialog.Title = "Save SD card backup";
@@ -346,6 +357,8 @@ namespace installer
 
                 if (dialog.FileName != "")
                 {
+                    this.operationCancelled = false;
+                    this.operationInProgress = true;
                     Thread t = new Thread(() => backup(dialog.FileName, this.selectedUSBDevice));
                     t.Start();
                 }
@@ -388,6 +401,7 @@ namespace installer
         {
             this.Size = new Size(this.Width, 420);
             this.progressStatus = text;
+            this.progressBar.Value = 0;
         }
 
         private void setProgress(int percentage)
@@ -407,6 +421,31 @@ namespace installer
         {
             Info i = new Info();
             i.Show();
+        }
+
+        private void buttonCancelOperation_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel the current operation?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.operationCancelled = true;
+                if (this.webClient.IsBusy)
+                {
+                    this.webClient.CancelAsync();
+                }
+
+                this.restoreTimer.Stop();
+                this.progressTimer.Stop();
+
+                UInt32 CancelError = 0;
+                foreach (uint i in this.USBDevices)
+                {
+                    usbit32.CancelOperation(i, ref CancelError); 
+                }
+
+                this.closeProgressMeter();
+                this.operationInProgress = false;
+            }
         }
 
     }
