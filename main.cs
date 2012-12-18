@@ -398,6 +398,19 @@ namespace installer
                 this.progressBar.Value = 100;
             }
         }
+
+        private void labelInfo_Click(object sender, EventArgs e)
+        {
+            Info i = new Info();
+            i.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Info i = new Info();
+            i.Show();
+        }
+
     }
 }
 

@@ -33,14 +33,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxVersions = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.comboBoxSDcard = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.progressTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btRefreshAdvanced = new System.Windows.Forms.Button();
             this.cbAdvancedSDCards = new System.Windows.Forms.ComboBox();
             this.gbAdvancedBackup = new System.Windows.Forms.GroupBox();
             this.btBackup = new System.Windows.Forms.Button();
@@ -49,10 +47,13 @@
             this.btSelectImage = new System.Windows.Forms.Button();
             this.tbRestoreImageLocation = new System.Windows.Forms.TextBox();
             this.restoreTimer = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.labelDownloadStatus = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btRefreshAdvanced = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,8 +62,8 @@
             this.tabPage2.SuspendLayout();
             this.gbAdvancedBackup.SuspendLayout();
             this.gbAdvancedRestore.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // InstallBtn
@@ -108,20 +109,6 @@
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2. Select SD card";
-            // 
-            // button1
-            // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.button1.BackgroundImage = global::installer.Properties.Resources.refresh;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(261, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 21);
-            this.button1.TabIndex = 21;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBoxSDcard
             // 
@@ -186,20 +173,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advanced mode";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btRefreshAdvanced
-            // 
-            this.btRefreshAdvanced.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.btRefreshAdvanced.BackgroundImage = global::installer.Properties.Resources.refresh;
-            this.btRefreshAdvanced.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btRefreshAdvanced.FlatAppearance.BorderSize = 0;
-            this.btRefreshAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btRefreshAdvanced.Location = new System.Drawing.Point(273, 12);
-            this.btRefreshAdvanced.Name = "btRefreshAdvanced";
-            this.btRefreshAdvanced.Size = new System.Drawing.Size(22, 21);
-            this.btRefreshAdvanced.TabIndex = 20;
-            this.btRefreshAdvanced.UseVisualStyleBackColor = true;
-            this.btRefreshAdvanced.Click += new System.EventHandler(this.btRefreshAdvanced_Click);
             // 
             // cbAdvancedSDCards
             // 
@@ -279,16 +252,6 @@
             // 
             this.restoreTimer.Tick += new System.EventHandler(this.restoreTimer_Tick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::installer.Properties.Resources.xbianlogobluetech;
-            this.pictureBox1.Location = new System.Drawing.Point(-40, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(418, 88);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
-            // 
             // progressBar
             // 
             this.progressBar.Location = new System.Drawing.Point(17, 36);
@@ -315,16 +278,70 @@
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::installer.Properties.Resources.xbianlogobluetech;
+            this.pictureBox1.Location = new System.Drawing.Point(-40, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(418, 88);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.button1.BackgroundImage = global::installer.Properties.Resources.refresh;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(261, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(22, 21);
+            this.button1.TabIndex = 21;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btRefreshAdvanced
+            // 
+            this.btRefreshAdvanced.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.btRefreshAdvanced.BackgroundImage = global::installer.Properties.Resources.refresh;
+            this.btRefreshAdvanced.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btRefreshAdvanced.FlatAppearance.BorderSize = 0;
+            this.btRefreshAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRefreshAdvanced.Location = new System.Drawing.Point(273, 12);
+            this.btRefreshAdvanced.Name = "btRefreshAdvanced";
+            this.btRefreshAdvanced.Size = new System.Drawing.Size(22, 21);
+            this.btRefreshAdvanced.TabIndex = 20;
+            this.btRefreshAdvanced.UseVisualStyleBackColor = true;
+            this.btRefreshAdvanced.Click += new System.EventHandler(this.btRefreshAdvanced_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.button2.Location = new System.Drawing.Point(287, 1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(29, 27);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "?";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(318, 387);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.Name = "main";
             this.ShowIcon = false;
@@ -340,8 +357,8 @@
             this.gbAdvancedBackup.ResumeLayout(false);
             this.gbAdvancedRestore.ResumeLayout(false);
             this.gbAdvancedRestore.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -372,6 +389,7 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label labelDownloadStatus;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button2;
 
     }
 }
