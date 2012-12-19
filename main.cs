@@ -84,13 +84,15 @@ namespace installer
 
             XmlNodeList XMLverName = xmlDoc.GetElementsByTagName("name");
             XmlNodeList XMLlocations = xmlDoc.GetElementsByTagName("locations");
+            XmlNodeList XMLMD5 = xmlDoc.GetElementsByTagName("md5");
 
             this.versions = new List<version>();
             for (int i = 0; i < XMLverName.Count; i++)
             {
                 string verName = XMLverName[i].InnerText;
                 string[] locations = XMLlocations[i].InnerText.Split(';');
-                version ver = new version(verName, locations);
+                string md5String = XMLMD5[i].InnerText;
+                version ver = new version(verName, locations, md5String);
                 this.versions.Add(ver);
             }
 
@@ -253,6 +255,18 @@ namespace installer
         private void restore(string imageLocation, uint usbDevice)
         {
             UInt32 RestoreErrorNum = 0;
+
+            // Check MD5
+            if (this.restoreType == restoreType.XBIAN)
+            {
+                FileStream fs = new FileStream(selectedVersion.getArchiveName(), FileMode.Open);
+                if (!this.selectedVersion.checkMD5(fs))
+                {
+                    MessageBox.Show("MD5 Check failed, the downloaded XBian version may be spoofed, cancelling. Please contact us");
+                    return;
+                }
+
+            }
 
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
