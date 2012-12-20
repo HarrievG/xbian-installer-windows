@@ -122,15 +122,19 @@ namespace installer
             usbit32.FindVolumes();
             uint usbdevice = usbit32.GetFirstDevice(true);          
             System.Text.StringBuilder deviceName = new System.Text.StringBuilder(100);
+            System.Text.StringBuilder devicePath = new System.Text.StringBuilder(100);
  
             while ((usbdevice != 0))
             {
                 usbit32.GetFriendlyName(usbdevice, deviceName, 100);
-                Console.WriteLine(usbit32.GetDeviceSize(usbdevice));
+                usbit32.GetDevicePath(usbdevice, devicePath, 100);
+                ulong deviceSize = usbit32.GetDeviceSize(usbdevice) / 1000000;
                 if (usbit32.GetDeviceSize(usbdevice) > 900000000)
                 {
-                    this.comboBoxSDcard.Items.Add(deviceName.ToString());
-                    this.cbAdvancedSDCards.Items.Add(deviceName.ToString());
+                    Console.WriteLine(deviceSize);
+                    String deviceString = "(" + devicePath.ToString() + ", " + deviceSize + " MB) " + deviceName.ToString();
+                    this.comboBoxSDcard.Items.Add(deviceString);
+                    this.cbAdvancedSDCards.Items.Add(deviceString);
                     this.USBDevices.Add(usbdevice);
                 }
                 usbdevice = usbit32.GetNextDevice(true);        
