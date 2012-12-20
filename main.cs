@@ -127,12 +127,10 @@ namespace installer
             while ((usbdevice != 0))
             {
                 usbit32.GetFriendlyName(usbdevice, deviceName, 100);
-                usbit32.GetDevicePath(usbdevice, devicePath, 100);
                 ulong deviceSize = usbit32.GetDeviceSize(usbdevice) / 1000000;
                 if (usbit32.GetDeviceSize(usbdevice) > 900000000)
                 {
-                    Console.WriteLine(deviceSize);
-                    String deviceString = "(" + devicePath.ToString() + ", " + deviceSize + " MB) " + deviceName.ToString();
+                    String deviceString = "(" + deviceSize + " MB) " + deviceName.ToString();
                     this.comboBoxSDcard.Items.Add(deviceString);
                     this.cbAdvancedSDCards.Items.Add(deviceString);
                     this.USBDevices.Add(usbdevice);
@@ -216,7 +214,7 @@ namespace installer
         private void InstallBtn_Click(object sender, System.EventArgs e)
         {
             this.operationCancelled = false;
-            DialogResult dialog = MessageBox.Show("Are you sure you want to continue? This will remove all data on the selected SD card", "Warning!", MessageBoxButtons.YesNo);
+            DialogResult dialog = MessageBox.Show("This will remove all data on the selected SD card, continue?", "Warning!", MessageBoxButtons.YesNo);
             if (!operationInProgress)
             {
                 if (dialog == DialogResult.Yes)
@@ -232,7 +230,7 @@ namespace installer
                     }
                     else
                     {
-                        DialogResult dialogResult = MessageBox.Show("XBian " + this.selectedVersion.getVersionName() + " has not been downloaded yet. Do you want to download it now?", "XBian installer", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = MessageBox.Show("XBian " + this.selectedVersion.getVersionName() + " downloaded yet. Do you want to download it now?", "XBian installer", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.webClient.DownloadFileAsync(new Uri(this.selectedVersion.getRandomMirror()), "temp");
@@ -300,9 +298,9 @@ namespace installer
                 if (!operationCancelled)
                 {
                     if (this.restoreType == restoreType.XBIAN)
-                        MessageBox.Show("Installation of XBian succesfully completed. You may now unplug your SD card and plug it into your Raspberri Pi");
+                        MessageBox.Show("Installation of XBian succesfully completed." + Environment.NewLine + "You may now unplug your SD card and plug it into your Raspberri Pi");
                     else
-                        MessageBox.Show("Image succesfully restored. You may now unplug your SD card and plug it into your Raspberri Pi");
+                        MessageBox.Show("Image succesfully restored." + Environment.NewLine + "You may now unplug your SD card and plug it into your Raspberri Pi");
                 }
             }
 
@@ -339,7 +337,7 @@ namespace installer
             this.operationCancelled = false;
             if (!operationInProgress)
             {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to restore the selected image? This will delete ALL data on your SD card.", "Continue?", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("This will remove all data on the selected SD card, continue?", "Warning!", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     this.operationInProgress = true;
