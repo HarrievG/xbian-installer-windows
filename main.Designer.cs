@@ -309,10 +309,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::installer.Properties.Resources.xbianlogobluetech;
-            this.pictureBox1.Location = new System.Drawing.Point(-40, 0);
+            this.pictureBox1.Image = global::installer.Properties.Resources.Splash;
+            this.pictureBox1.Location = new System.Drawing.Point(14, -2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(418, 88);
+            this.pictureBox1.Size = new System.Drawing.Size(292, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
@@ -353,8 +353,8 @@
             this.ClientSize = new System.Drawing.Size(318, 387);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.MaximizeBox = false;

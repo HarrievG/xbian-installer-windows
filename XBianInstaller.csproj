@@ -133,6 +133,7 @@
     <None Include="Resources\refresh.png" />
     <None Include="Resources\Cute-Ball-Stop-icon.png" />
     <None Include="Resources\cross.png" />
+    <None Include="Resources\Splash.png" />
     <Content Include="usbit32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

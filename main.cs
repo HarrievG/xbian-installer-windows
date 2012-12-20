@@ -230,7 +230,7 @@ namespace installer
                     }
                     else
                     {
-                        DialogResult dialogResult = MessageBox.Show("XBian " + this.selectedVersion.getVersionName() + " downloaded yet. Do you want to download it now?", "XBian installer", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = MessageBox.Show("XBian " + this.selectedVersion.getVersionName() + " not yet downloaded. Do you want to download it now?", "XBian installer", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
                             this.webClient.DownloadFileAsync(new Uri(this.selectedVersion.getRandomMirror()), "temp");
@@ -463,6 +463,7 @@ namespace installer
                 this.operationInProgress = false;
             }
         }
+
 
     }
 }
