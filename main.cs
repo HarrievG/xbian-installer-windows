@@ -11,6 +11,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Threading;
+using System.Management;
 
 namespace installer
 {
@@ -113,7 +114,6 @@ namespace installer
 
         private void listDevices()
         {
-            // TODO ADD drive letter
             this.comboBoxSDcard.Items.Clear();
             this.cbAdvancedSDCards.Items.Clear();
             this.USBDevices = new List<uint>();
@@ -123,10 +123,9 @@ namespace installer
             uint usbdevice = usbit32.GetFirstDevice(true);          
             System.Text.StringBuilder deviceName = new System.Text.StringBuilder(100);
             System.Text.StringBuilder devicePath = new System.Text.StringBuilder(100);
- 
+
             while ((usbdevice != 0))
             {
-                usbit32.GetFriendlyName(usbdevice, deviceName, 100);
                 ulong deviceSize = usbit32.GetDeviceSize(usbdevice) / 1000000;
                 if (usbit32.GetDeviceSize(usbdevice) > 900000000)
                 {
