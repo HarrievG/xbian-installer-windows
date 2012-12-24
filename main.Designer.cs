@@ -33,12 +33,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxVersions = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.comboBoxSDcard = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.progressTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btRefreshAdvanced = new System.Windows.Forms.Button();
             this.cbAdvancedSDCards = new System.Windows.Forms.ComboBox();
             this.gbAdvancedBackup = new System.Windows.Forms.GroupBox();
             this.btBackup = new System.Windows.Forms.Button();
@@ -50,11 +52,9 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.labelDownloadStatus = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.buttonInfo = new System.Windows.Forms.Button();
             this.buttonCancelOperation = new System.Windows.Forms.Button();
+            this.buttonInfo = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btRefreshAdvanced = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -110,6 +110,20 @@
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2. Select SD card";
+            // 
+            // button1
+            // 
+            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.button1.BackgroundImage = global::installer.Properties.Resources.refresh;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(261, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(22, 21);
+            this.button1.TabIndex = 21;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBoxSDcard
             // 
@@ -174,6 +188,20 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advanced mode";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btRefreshAdvanced
+            // 
+            this.btRefreshAdvanced.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.btRefreshAdvanced.BackgroundImage = global::installer.Properties.Resources.refresh;
+            this.btRefreshAdvanced.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btRefreshAdvanced.FlatAppearance.BorderSize = 0;
+            this.btRefreshAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btRefreshAdvanced.Location = new System.Drawing.Point(273, 12);
+            this.btRefreshAdvanced.Name = "btRefreshAdvanced";
+            this.btRefreshAdvanced.Size = new System.Drawing.Size(22, 21);
+            this.btRefreshAdvanced.TabIndex = 20;
+            this.btRefreshAdvanced.UseVisualStyleBackColor = true;
+            this.btRefreshAdvanced.Click += new System.EventHandler(this.btRefreshAdvanced_Click);
             // 
             // cbAdvancedSDCards
             // 
@@ -280,6 +308,19 @@
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             // 
+            // buttonCancelOperation
+            // 
+            this.buttonCancelOperation.BackgroundImage = global::installer.Properties.Resources.cross;
+            this.buttonCancelOperation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonCancelOperation.FlatAppearance.BorderSize = 0;
+            this.buttonCancelOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancelOperation.Location = new System.Drawing.Point(284, 37);
+            this.buttonCancelOperation.Name = "buttonCancelOperation";
+            this.buttonCancelOperation.Size = new System.Drawing.Size(18, 18);
+            this.buttonCancelOperation.TabIndex = 22;
+            this.buttonCancelOperation.UseVisualStyleBackColor = true;
+            this.buttonCancelOperation.Click += new System.EventHandler(this.buttonCancelOperation_Click);
+            // 
             // buttonInfo
             // 
             this.buttonInfo.FlatAppearance.BorderSize = 0;
@@ -294,19 +335,6 @@
             this.buttonInfo.UseVisualStyleBackColor = false;
             this.buttonInfo.Click += new System.EventHandler(this.button2_Click);
             // 
-            // buttonCancelOperation
-            // 
-            this.buttonCancelOperation.BackgroundImage = global::installer.Properties.Resources.cross;
-            this.buttonCancelOperation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonCancelOperation.FlatAppearance.BorderSize = 0;
-            this.buttonCancelOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCancelOperation.Location = new System.Drawing.Point(284, 37);
-            this.buttonCancelOperation.Name = "buttonCancelOperation";
-            this.buttonCancelOperation.Size = new System.Drawing.Size(18, 18);
-            this.buttonCancelOperation.TabIndex = 22;
-            this.buttonCancelOperation.UseVisualStyleBackColor = true;
-            this.buttonCancelOperation.Click += new System.EventHandler(this.buttonCancelOperation_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::installer.Properties.Resources.Splash;
@@ -317,40 +345,12 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.button1.BackgroundImage = global::installer.Properties.Resources.refresh;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(261, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 21);
-            this.button1.TabIndex = 21;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btRefreshAdvanced
-            // 
-            this.btRefreshAdvanced.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.btRefreshAdvanced.BackgroundImage = global::installer.Properties.Resources.refresh;
-            this.btRefreshAdvanced.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btRefreshAdvanced.FlatAppearance.BorderSize = 0;
-            this.btRefreshAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btRefreshAdvanced.Location = new System.Drawing.Point(273, 12);
-            this.btRefreshAdvanced.Name = "btRefreshAdvanced";
-            this.btRefreshAdvanced.Size = new System.Drawing.Size(22, 21);
-            this.btRefreshAdvanced.TabIndex = 20;
-            this.btRefreshAdvanced.UseVisualStyleBackColor = true;
-            this.btRefreshAdvanced.Click += new System.EventHandler(this.btRefreshAdvanced_Click);
-            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(318, 387);
+            this.ClientSize = new System.Drawing.Size(318, 322);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tabControl1);

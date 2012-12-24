@@ -47,7 +47,7 @@ namespace installer
         public string getArchiveName()
         {
             string versionNameWithoutSpaces = versionName.Replace(" ", string.Empty);
-            return versionNameWithoutSpaces + ".img.gz";
+            return versionNameWithoutSpaces + ".tar.gz";
         }
 
         public string getRandomMirror()
