@@ -69,6 +69,7 @@
             // 
             // InstallBtn
             // 
+            this.InstallBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.InstallBtn.Location = new System.Drawing.Point(6, 22);
             this.InstallBtn.Name = "InstallBtn";
             this.InstallBtn.Size = new System.Drawing.Size(277, 38);
@@ -80,7 +81,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.comboBoxVersions);
-            this.groupBox1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(289, 55);
@@ -91,11 +92,11 @@
             // comboBoxVersions
             // 
             this.comboBoxVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxVersions.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxVersions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.comboBoxVersions.FormattingEnabled = true;
             this.comboBoxVersions.Location = new System.Drawing.Point(6, 22);
             this.comboBoxVersions.Name = "comboBoxVersions";
-            this.comboBoxVersions.Size = new System.Drawing.Size(277, 22);
+            this.comboBoxVersions.Size = new System.Drawing.Size(277, 24);
             this.comboBoxVersions.TabIndex = 1;
             this.comboBoxVersions.SelectedIndexChanged += new System.EventHandler(this.comboBoxVersions_SelectedIndexChanged);
             // 
@@ -103,7 +104,7 @@
             // 
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.comboBoxSDcard);
-            this.groupBox2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Location = new System.Drawing.Point(6, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(289, 54);
@@ -128,18 +129,18 @@
             // comboBoxSDcard
             // 
             this.comboBoxSDcard.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSDcard.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSDcard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.comboBoxSDcard.FormattingEnabled = true;
             this.comboBoxSDcard.Location = new System.Drawing.Point(6, 22);
             this.comboBoxSDcard.Name = "comboBoxSDcard";
-            this.comboBoxSDcard.Size = new System.Drawing.Size(249, 22);
+            this.comboBoxSDcard.Size = new System.Drawing.Size(249, 24);
             this.comboBoxSDcard.TabIndex = 2;
             this.comboBoxSDcard.SelectedIndexChanged += new System.EventHandler(this.comboBoxSDcard_SelectedIndexChanged);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.InstallBtn);
-            this.groupBox3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(6, 127);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(289, 70);
@@ -206,18 +207,18 @@
             // cbAdvancedSDCards
             // 
             this.cbAdvancedSDCards.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAdvancedSDCards.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbAdvancedSDCards.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.cbAdvancedSDCards.FormattingEnabled = true;
             this.cbAdvancedSDCards.Location = new System.Drawing.Point(6, 12);
             this.cbAdvancedSDCards.Name = "cbAdvancedSDCards";
-            this.cbAdvancedSDCards.Size = new System.Drawing.Size(261, 22);
+            this.cbAdvancedSDCards.Size = new System.Drawing.Size(261, 24);
             this.cbAdvancedSDCards.TabIndex = 18;
             this.cbAdvancedSDCards.SelectedIndexChanged += new System.EventHandler(this.cbAdvancedSDCards_SelectedIndexChanged);
             // 
             // gbAdvancedBackup
             // 
             this.gbAdvancedBackup.Controls.Add(this.btBackup);
-            this.gbAdvancedBackup.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbAdvancedBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.gbAdvancedBackup.Location = new System.Drawing.Point(6, 140);
             this.gbAdvancedBackup.Name = "gbAdvancedBackup";
             this.gbAdvancedBackup.Size = new System.Drawing.Size(289, 52);
@@ -240,7 +241,7 @@
             this.gbAdvancedRestore.Controls.Add(this.btRestore);
             this.gbAdvancedRestore.Controls.Add(this.btSelectImage);
             this.gbAdvancedRestore.Controls.Add(this.tbRestoreImageLocation);
-            this.gbAdvancedRestore.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbAdvancedRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.gbAdvancedRestore.Location = new System.Drawing.Point(6, 41);
             this.gbAdvancedRestore.Name = "gbAdvancedRestore";
             this.gbAdvancedRestore.Size = new System.Drawing.Size(289, 85);
@@ -270,11 +271,11 @@
             // 
             // tbRestoreImageLocation
             // 
-            this.tbRestoreImageLocation.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbRestoreImageLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.tbRestoreImageLocation.Location = new System.Drawing.Point(6, 22);
             this.tbRestoreImageLocation.Name = "tbRestoreImageLocation";
             this.tbRestoreImageLocation.ReadOnly = true;
-            this.tbRestoreImageLocation.Size = new System.Drawing.Size(277, 21);
+            this.tbRestoreImageLocation.Size = new System.Drawing.Size(277, 20);
             this.tbRestoreImageLocation.TabIndex = 2;
             // 
             // restoreTimer
@@ -350,7 +351,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(318, 322);
+            this.ClientSize = new System.Drawing.Size(318, 386);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.tabControl1);
