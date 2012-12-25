@@ -22,7 +22,7 @@ namespace installer
     public partial class main : Form
     {
         // Location of the XML file which holds the mirrors
-        private static string mirrorXMLFile = "https://raw.github.com/xbianonpi/wiki/master/mirrors.xml";
+        private static string mirrorXMLFile = "http://jb.xenserver.sk/xbian/mirrors.xml";
 
         // List with all the  USB devices & versions
         private List<uint> USBDevices;
