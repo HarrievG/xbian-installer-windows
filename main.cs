@@ -65,7 +65,7 @@ namespace installer
                 // Until the the download is finished the name of the file is "temp", rename it to selected XBian version
                 version ver = this.versions[comboBoxVersions.SelectedIndex];
                 File.Move(@"temp", ver.getArchiveName());
-                this.showProgressMeter("(2/2) Installing XBian " + this.selectedVersion.getVersionName() + "on your SD card");
+                this.showProgressMeter("(2/2) Installing XBian " + this.selectedVersion.getVersionName() + " on your SD card");
                 this.initRestore(this.selectedVersion.getArchiveName(), this.USBDevices[this.comboBoxSDcard.SelectedIndex]);
             }
         }
@@ -154,6 +154,21 @@ namespace installer
 
         private void updateUI()
         {
+            if (operationInProgress)
+            {
+                this.showProgressMeter("");
+                InstallBtn.Enabled = false;
+                btBackup.Enabled = false;
+                btRestore.Enabled = false;
+            }
+            else
+            {
+                this.closeProgressMeter();
+                InstallBtn.Enabled = true;
+                btBackup.Enabled = true;
+                btRestore.Enabled = true;
+            }
+
             if (this.comboBoxVersions.SelectedItem != null)
             {
                 groupBox2.Enabled = true;
@@ -213,6 +228,7 @@ namespace installer
         private void InstallBtn_Click(object sender, System.EventArgs e)
         {
             this.operationCancelled = false;
+            this.updateUI();
             DialogResult dialog = MessageBox.Show("This will remove all data on the selected SD card, continue?", "Warning!", MessageBoxButtons.YesNo);
             if (!operationInProgress)
             {
@@ -226,6 +242,7 @@ namespace installer
                         this.initRestore(this.selectedVersion.getArchiveName(), this.USBDevices[this.comboBoxSDcard.SelectedIndex]);
                         this.showProgressMeter("Installing XBian " + this.selectedVersion.getVersionName() + " on your SD card");
                         this.operationInProgress = true;
+                        this.updateUI();
                     }
                     else
                     {
@@ -235,6 +252,7 @@ namespace installer
                             this.webClient.DownloadFileAsync(new Uri(this.selectedVersion.getRandomMirror()), "temp");
                             this.showProgressMeter("(1/2) Downloading XBian " + this.selectedVersion.getVersionName());
                             this.operationInProgress = true;
+                            this.updateUI();
                         }
                     }
                 }
@@ -247,6 +265,7 @@ namespace installer
 
         public void initRestore(string imageLocation, uint usbDevice)
         {
+            this.updateUI();
             this.selectedUSBDevice = usbDevice;
             this.progressTimer.Enabled = true;
             Thread t = new Thread(() => restore(imageLocation, usbDevice));
@@ -264,6 +283,7 @@ namespace installer
                 if (!this.selectedVersion.checkMD5(fs))
                 {
                     MessageBox.Show("MD5 Check failed, the downloaded XBian version may be spoofed, cancelling. Please contact us");
+                    this.updateUI();
                     return;
                 }
 
@@ -304,6 +324,12 @@ namespace installer
             }
 
             this.operationInProgress = false;
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.updateUI();
+            });
+ 
         }
 
         private void installTimer_Tick(object sender, System.EventArgs e)
@@ -414,9 +440,13 @@ namespace installer
 
         private void showProgressMeter(string text)
         {
+            if (text != "")
+            {
+                this.progressStatus = text;
+                this.progressBar.Value = 0;
+            }
+
             this.Size = new Size(this.Width, 420);
-            this.progressStatus = text;
-            this.progressBar.Value = 0;
         }
 
         private void setProgress(int percentage)
@@ -440,6 +470,7 @@ namespace installer
 
         private void buttonCancelOperation_Click(object sender, EventArgs e)
         {
+            this.updateUI();
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel the current operation?", "Warning", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
