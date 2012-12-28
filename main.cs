@@ -334,7 +334,14 @@ namespace installer
 
         private void installTimer_Tick(object sender, System.EventArgs e)
         {
-            this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * 12);
+            if (this.restoreType == restoreType.XBIAN)
+            {
+                this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * 12);
+            }
+            else
+            {
+                this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * (8 + (1/3)));
+            }
         }
 
         private void comboBoxSDcard_SelectedIndexChanged(object sender, System.EventArgs e)
