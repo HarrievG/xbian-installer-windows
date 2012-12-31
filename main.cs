@@ -22,7 +22,7 @@ namespace installer
     public partial class main : Form
     {
         // Location of the XML file which holds the mirrors
-        private static string mirrorXMLFile = "http://download.xbian.org/mirrors.xml";
+        private static string mirrorXMLFile = "http://download.brantje.com/xbian/mirrors.xml";
 
         // List with all the  USB devices & versions
         private List<uint> USBDevices;
@@ -477,7 +477,6 @@ namespace installer
 
         private void buttonCancelOperation_Click(object sender, EventArgs e)
         {
-            this.updateUI();
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel the current operation?", "Warning", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -499,6 +498,8 @@ namespace installer
                 this.closeProgressMeter();
                 this.operationInProgress = false;
             }
+
+            this.updateUI();
         }
 
 

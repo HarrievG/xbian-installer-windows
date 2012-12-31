@@ -9,14 +9,21 @@ namespace installer
     class version
     {
         private string versionName;
-        private string[] locations;
         private string md5Version;
+        private Random random;
+        private List<String> locations;
 
         public version(string versionName, string[] locations, string md5)
         {
             this.versionName = versionName;
-            this.locations = locations;
+            this.locations = new List<string>();
+            for (int i = 0; i < locations.Length; i++)
+            {
+                this.locations.Add(locations[i]);
+            }
+            
             this.md5Version = md5;
+            random = new Random();
         }
 
         public string getVersionName()
@@ -52,9 +59,10 @@ namespace installer
 
         public string getRandomMirror()
         {
-            Random random = new Random();
-            int i = random.Next(0, this.locations.Length - 1);
-            return this.locations[i];
+            int i = random.Next(this.locations.Count);
+            string mirror = this.locations[i];
+            Console.WriteLine(mirror);
+            return mirror;
         }
     }
 }
