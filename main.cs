@@ -442,7 +442,30 @@ namespace installer
 
         private void closeProgressMeter()
         {
-            this.Size = new Size(this.Width, 350);
+            this.Size = new Size(this.Width, this.convertFormHightAccordingDPI(402));
+        }
+
+        private int convertFormHightAccordingDPI(int height)
+        {
+            double multiplier;
+
+            using (Graphics myGraphics = this.CreateGraphics())
+            {
+                switch (Convert.ToInt32(myGraphics.DpiY))
+                {
+                    case 120:
+                        multiplier = 1.02;
+                        break;
+                    case 150:
+                        multiplier = 1.05;
+                        break;
+                    default:
+                        multiplier = 1;
+                        break;
+                }
+            }
+
+            return Convert.ToInt32(height * multiplier);
         }
 
         private void showProgressMeter(string text)
@@ -453,7 +476,7 @@ namespace installer
                 this.progressBar.Value = 0;
             }
 
-            this.Size = new Size(this.Width, 420);
+             this.Size = new Size(this.Width, this.convertFormHightAccordingDPI(489));
         }
 
         private void setProgress(int percentage)
