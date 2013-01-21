@@ -198,7 +198,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(407, 256);
+            this.tabPage2.Size = new System.Drawing.Size(338, 224);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advanced mode";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@
             this.cbAdvancedSDCards.Location = new System.Drawing.Point(8, 15);
             this.cbAdvancedSDCards.Margin = new System.Windows.Forms.Padding(4);
             this.cbAdvancedSDCards.Name = "cbAdvancedSDCards";
-            this.cbAdvancedSDCards.Size = new System.Drawing.Size(347, 24);
+            this.cbAdvancedSDCards.Size = new System.Drawing.Size(322, 24);
             this.cbAdvancedSDCards.TabIndex = 18;
             this.cbAdvancedSDCards.SelectedIndexChanged += new System.EventHandler(this.cbAdvancedSDCards_SelectedIndexChanged);
             // 
@@ -234,11 +234,11 @@
             // 
             this.gbAdvancedBackup.Controls.Add(this.btBackup);
             this.gbAdvancedBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.gbAdvancedBackup.Location = new System.Drawing.Point(8, 172);
+            this.gbAdvancedBackup.Location = new System.Drawing.Point(8, 160);
             this.gbAdvancedBackup.Margin = new System.Windows.Forms.Padding(4);
             this.gbAdvancedBackup.Name = "gbAdvancedBackup";
             this.gbAdvancedBackup.Padding = new System.Windows.Forms.Padding(4);
-            this.gbAdvancedBackup.Size = new System.Drawing.Size(385, 64);
+            this.gbAdvancedBackup.Size = new System.Drawing.Size(326, 60);
             this.gbAdvancedBackup.TabIndex = 17;
             this.gbAdvancedBackup.TabStop = false;
             this.gbAdvancedBackup.Text = "Backup SD card";
@@ -248,7 +248,7 @@
             this.btBackup.Location = new System.Drawing.Point(8, 27);
             this.btBackup.Margin = new System.Windows.Forms.Padding(4);
             this.btBackup.Name = "btBackup";
-            this.btBackup.Size = new System.Drawing.Size(369, 28);
+            this.btBackup.Size = new System.Drawing.Size(314, 28);
             this.btBackup.TabIndex = 5;
             this.btBackup.Text = "One click backup";
             this.btBackup.UseVisualStyleBackColor = true;
@@ -264,17 +264,17 @@
             this.gbAdvancedRestore.Margin = new System.Windows.Forms.Padding(4);
             this.gbAdvancedRestore.Name = "gbAdvancedRestore";
             this.gbAdvancedRestore.Padding = new System.Windows.Forms.Padding(4);
-            this.gbAdvancedRestore.Size = new System.Drawing.Size(385, 105);
+            this.gbAdvancedRestore.Size = new System.Drawing.Size(326, 105);
             this.gbAdvancedRestore.TabIndex = 16;
             this.gbAdvancedRestore.TabStop = false;
             this.gbAdvancedRestore.Text = "Restore image";
             // 
             // btRestore
             // 
-            this.btRestore.Location = new System.Drawing.Point(249, 64);
+            this.btRestore.Location = new System.Drawing.Point(180, 64);
             this.btRestore.Margin = new System.Windows.Forms.Padding(4);
             this.btRestore.Name = "btRestore";
-            this.btRestore.Size = new System.Drawing.Size(128, 28);
+            this.btRestore.Size = new System.Drawing.Size(142, 28);
             this.btRestore.TabIndex = 4;
             this.btRestore.Text = "Restore";
             this.btRestore.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@
             this.btSelectImage.Location = new System.Drawing.Point(9, 64);
             this.btSelectImage.Margin = new System.Windows.Forms.Padding(4);
             this.btSelectImage.Name = "btSelectImage";
-            this.btSelectImage.Size = new System.Drawing.Size(232, 28);
+            this.btSelectImage.Size = new System.Drawing.Size(163, 28);
             this.btSelectImage.TabIndex = 3;
             this.btSelectImage.Text = "Select .img";
             this.btSelectImage.UseVisualStyleBackColor = false;
@@ -298,7 +298,7 @@
             this.tbRestoreImageLocation.Margin = new System.Windows.Forms.Padding(4);
             this.tbRestoreImageLocation.Name = "tbRestoreImageLocation";
             this.tbRestoreImageLocation.ReadOnly = true;
-            this.tbRestoreImageLocation.Size = new System.Drawing.Size(368, 20);
+            this.tbRestoreImageLocation.Size = new System.Drawing.Size(314, 20);
             this.tbRestoreImageLocation.TabIndex = 2;
             // 
             // restoreTimer

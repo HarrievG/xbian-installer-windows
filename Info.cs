@@ -10,7 +10,7 @@ namespace installer
 {
     public partial class Info : Form
     {
-        private static string version = "1.0";
+        private static string version = "1.01";
         public Info()
         {
             InitializeComponent();
