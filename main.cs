@@ -222,7 +222,7 @@ namespace installer
 
         private void downloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            this.setProgress(e.ProgressPercentage);
+            this.setProgress(Convert.ToInt16(e.ProgressPercentage));
         }
 
         private void InstallBtn_Click(object sender, System.EventArgs e)
@@ -293,7 +293,7 @@ namespace installer
             stopwatch.Start();
             try
             {
-                usbit32.RestoreVolume(usbDevice, imageLocation, 0, true, true, true, ref RestoreErrorNum);
+                usbit32.RestoreVolume(usbDevice, imageLocation, 0, true, true, false, ref RestoreErrorNum);
                 stopwatch.Stop();
                 
             }
@@ -334,14 +334,8 @@ namespace installer
 
         private void installTimer_Tick(object sender, System.EventArgs e)
         {
-            if (this.restoreType == restoreType.XBIAN)
-            {
-                this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * 12);
-            }
-            else
-            {
-                this.setProgress(Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice)) * (8 + (1/3)));
-            }
+            Int16 progress = Convert.ToInt16(usbit32.GetProgress(this.selectedUSBDevice));
+            this.setProgress(progress);
         }
 
         private void comboBoxSDcard_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -479,7 +473,7 @@ namespace installer
              this.Size = new Size(this.Width, this.convertFormHightAccordingDPI(489));
         }
 
-        private void setProgress(int percentage)
+        private void setProgress(Int16 percentage)
         {
             this.labelDownloadStatus.Text = this.progressStatus + "  -  " + percentage + "%";
             if (percentage <= 100)
