@@ -10,11 +10,11 @@ namespace installer
 {
     public partial class Info : Form
     {
-        private static string version = "1.01";
+        private static string version = "BETA 1.1";
         public Info()
         {
             InitializeComponent();
-            this.Text = "XBian installer V" + version;
+            this.Text = "XBian installer " + version;
         }
 
         private void label2_Click(object sender, EventArgs e)

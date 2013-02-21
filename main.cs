@@ -316,8 +316,19 @@ namespace installer
             {
                 if (!operationCancelled)
                 {
-                    if (this.restoreType == restoreType.XBIAN)
-                        MessageBox.Show("Installation of XBian succesfully completed." + Environment.NewLine + "You may now unplug your SD card and plug it into your Raspberri Pi");
+                    if (this.restoreType == restoreType.XBIAN) {
+                        DialogResult result = MessageBox.Show("Do you want to setup a wireless network for XBian now?", "XBian setup", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            this.Invoke((MethodInvoker)delegate {
+                                this.Enabled = false;
+                                StringBuilder sb = new StringBuilder(200);
+                                usbit32.GetVolumePath(this.selectedUSBDevice, sb, 200); 
+                                openWLANSetup(sb.ToString());
+                            });
+                        }
+                        else MessageBox.Show("Installation of XBian succesfully completed." + Environment.NewLine + "You may now unplug your SD card and plug it into your Raspberri Pi");
+                    }
                     else
                         MessageBox.Show("Image succesfully restored." + Environment.NewLine + "You may now unplug your SD card and plug it into your Raspberri Pi");
                 }
@@ -330,6 +341,12 @@ namespace installer
                 this.updateUI();
             });
  
+        }
+
+        private void openWLANSetup(string sdLocation)
+        {
+            wlanautomatic wa = new wlanautomatic(sdLocation, this);
+            wa.Show();
         }
 
         private void installTimer_Tick(object sender, System.EventArgs e)
