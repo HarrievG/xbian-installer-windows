@@ -37,10 +37,9 @@ namespace installer
             if (this._protection == PROTECTION.CCMP) protection = "WPA";
             else if (this._protection == PROTECTION.None) protection = "Open";
 
-            string text = "wireless_network_ssid=" + this._ssid + Environment.NewLine +
-                "wireless_network_protection=" + protection;
+            string text = "network.wlan0.ssid=" + this._ssid + " network.wlan0.security=" + protection;
 
-            if (_protection != PROTECTION.None) text += Environment.NewLine + "wireless_network_pass=" + this._pass;
+            if (_protection != PROTECTION.None) text += Environment.NewLine + " network.wlan0.password=" + this._pass;
 
             return text;
         }

@@ -203,9 +203,11 @@ namespace installer
         {
             try
             {
-                StreamWriter config = new StreamWriter(this.SDCardLocation + "/settings.conf");
-                config.Write(network.ToString());
-                config.Close();
+                string cmdline = this.SDCardLocation + "/cmdline.txt";
+                string contents = File.ReadAllText(cmdline);
+                contents += " " + network.ToString();
+                File.WriteAllText(cmdline, String.Empty);
+                File.WriteAllText(cmdline, contents);
             }
             catch (IOException)
             {
