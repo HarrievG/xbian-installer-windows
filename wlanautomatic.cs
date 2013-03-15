@@ -203,11 +203,10 @@ namespace installer
         {
             try
             {
-                string cmdline = this.SDCardLocation + "/cmdline.txt";
-                string contents = File.ReadAllText(cmdline);
-                contents += " " + network.ToString();
-                File.WriteAllText(cmdline, String.Empty);
-                File.WriteAllText(cmdline, contents);
+                TextWriter file = new StreamWriter((this.SDCardLocation + "/cmdline.txt"),true);
+                file.Write( " " + network.ToString());
+                file.Flush();
+                file.Close();
             }
             catch (IOException)
             {

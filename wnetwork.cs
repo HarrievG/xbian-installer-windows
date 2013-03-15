@@ -37,10 +37,17 @@ namespace installer
             if (this._protection == PROTECTION.CCMP) protection = "WPA";
             else if (this._protection == PROTECTION.None) protection = "Open";
 
-            string text = "network.wlan0.ssid=" + this._ssid + " network.wlan0.security=" + protection;
+            string text = "network.wlan0.ssid=" + this.convertOctal(this._ssid) + " network.wlan0.security=" + protection;
 
-            if (_protection != PROTECTION.None) text += Environment.NewLine + " network.wlan0.password=" + this._pass;
+            if (_protection != PROTECTION.None) text += Environment.NewLine + " network.wlan0.password=" + convertOctal(this._pass);
 
+            return text;
+        }
+
+        private string convertOctal(string text)
+        {
+            text = text.Replace("=", "\\075");
+            text = text.Replace(" ", "\\040");
             return text;
         }
 
